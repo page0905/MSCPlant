@@ -1,0 +1,99 @@
+.container {
+  position: fixed;
+  max-width: 100%;
+  margin: auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  background-color: var(--color-primary);
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.8rem;
+  text-decoration: none;
+  color: var(--color-secondary);
+}
+
+.nav-center {
+  display: flex;
+  gap: 100px;
+}
+
+.nav-center a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.nav-center a:hover {
+  color: var(--color-background);
+}
+
+.right-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Cart badge */
+.cart-icon {
+  position: relative;
+  color: var(--color-secondary);
+  text-decoration: none;
+}
+
+.cart-icon:hover {
+  color: var(--color-background);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* Hamburger menu button - hidden desktop */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-secondary);
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-center {
+    position: fixed;
+    top: 60px;
+    right: 0;
+    background-color: var(--color-primary);
+    flex-direction: column;
+    width: 220px;
+    height: calc(100vh - 60px);
+    padding-top: 20px;
+    gap: 15px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 100;
+  }
+
+  .nav-center.open {
+    transform: translateX(0);
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
