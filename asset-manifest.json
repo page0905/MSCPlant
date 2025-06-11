@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/MSCPlant/static/css/main.ceaa9089.css",
-    "main.js": "/MSCPlant/static/js/main.8bc33601.js",
+    "main.css": "/MSCPlant/static/css/main.ac347e22.css",
+    "main.js": "/MSCPlant/static/js/main.c4a25e19.js",
     "static/media/Lavender.jpg": "/MSCPlant/static/media/Lavender.70688bc7a27f79cc373c.jpg",
     "static/media/SpiderPlant.jpg": "/MSCPlant/static/media/SpiderPlant.d1ac59bdd9063e3b16bf.jpg",
     "static/media/Passionflower.jpg": "/MSCPlant/static/media/Passionflower.f8a5ca3256884a55ec56.jpg",
@@ -81,11 +81,11 @@
     "static/media/Cactus.jpg": "/MSCPlant/static/media/Cactus.5dc2f718dea2d9200ce4.jpg",
     "static/media/Monstera.jpg": "/MSCPlant/static/media/Monstera.94665976a942a346b968.jpg",
     "index.html": "/MSCPlant/index.html",
-    "main.ceaa9089.css.map": "/MSCPlant/static/css/main.ceaa9089.css.map",
-    "main.8bc33601.js.map": "/MSCPlant/static/js/main.8bc33601.js.map"
+    "main.ac347e22.css.map": "/MSCPlant/static/css/main.ac347e22.css.map",
+    "main.c4a25e19.js.map": "/MSCPlant/static/js/main.c4a25e19.js.map"
   },
   "entrypoints": [
-    "static/css/main.ceaa9089.css",
-    "static/js/main.8bc33601.js"
+    "static/css/main.ac347e22.css",
+    "static/js/main.c4a25e19.js"
   ]
 }
