@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
@@ -8,9 +8,11 @@ import Plants from "./pages/Plants/Plants";
 import Contact from "./pages/Contact/Contact";
 import Cart from "./pages/Cart/Cart";
 
+const basename = process.env.NODE_ENV === "production" ? "/MSCPlant" : "";
+
 const App = () => {
   return (
-    <Router>
+    <BrowserRouter basename={basename}>
       <div className="app-wrapper">
         <Header />
         <main className="content">
@@ -23,7 +25,7 @@ const App = () => {
         </main>
         <Footer />
       </div>
-    </Router>
+    </BrowserRouter>
   );
 };
 
