@@ -1,23 +1,12 @@
 .hero {
   position: relative;
   height: 100vh;
-  background: url("../../assets/images/home/plant.jpg") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: var(--color-primary);
   overflow: hidden;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(59, 86, 77, 0.4);
-  z-index: 1;
 }
 
 .content {

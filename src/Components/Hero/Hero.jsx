@@ -3,9 +3,15 @@ import styles from "../../pages/Home/Home.module.css";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
+  const heroStyle = {
+    backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/home/hero.jpg)`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  };
+
   return (
-    <section className={styles.hero}>
-      <div className={styles.overlay}></div>
+    <section className={styles.hero} style={heroStyle}>
       <div className={styles.content}>
         <h1>
           Welcome to <span className={styles.highlight}>MSC Plant</span>
