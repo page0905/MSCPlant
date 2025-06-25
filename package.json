@@ -9,10 +9,11 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.6.1",
     "react-scripts": "^5.0.1",
-    "react-select": "^5.10.1"
+    "react-select": "^5.10.1",
+    "serve": "^14.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "serve -s build",
     "build": "react-scripts build",
     "server": "node server.js",
     "dev": "concurrently \"npm run server\" \"npm start\"",
