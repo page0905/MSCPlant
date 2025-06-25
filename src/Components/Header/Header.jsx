@@ -9,43 +9,65 @@ const Header = () => {
   const items = useSelector((state) => state.cart.items);
   const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
 
+  const closeMenu = () => setMenuOpen(false);
+
   return (
-    <header className="header">
-      <div className="header-container">
-        <Link to="/" className="logo">
-          MSC Plant
-        </Link>
-
-        <nav className={`nav-center ${menuOpen ? "open" : ""}`}>
-          <Link to="/" onClick={() => setMenuOpen(false)}>
-            Home
-          </Link>
-          <Link to="/plants" onClick={() => setMenuOpen(false)}>
-            Plants
-          </Link>
-          <Link to="/contact" onClick={() => setMenuOpen(false)}>
-            Contact
-          </Link>
-        </nav>
-
-        <div className="right-icons">
-          <Link to="/cart" className="cart-icon" aria-label="Cart">
-            <FaShoppingCart size={24} />
-            {totalQuantity > 0 && (
-              <span className="cart-badge">{totalQuantity}</span>
-            )}
+    <>
+      {/* HEADER luôn nằm trên cùng */}
+      <header className="header">
+        <div className="header-container">
+          <Link to="/" className="logo">
+            MSC Plant
           </Link>
 
-          <button
-            className="menu-toggle"
-            aria-label="Toggle menu"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-          </button>
+          <nav className="nav-center d-none d-md-flex">
+            <Link to="/">Home</Link>
+            <Link to="/plants">Plants</Link>
+            <Link to="/contact">Contact</Link>
+          </nav>
+
+          <div className="right-icons">
+            <Link to="/cart" className="cart-icon" aria-label="Cart">
+              <FaShoppingCart size={24} />
+              {totalQuantity > 0 && (
+                <span className="cart-badge">{totalQuantity}</span>
+              )}
+            </Link>
+
+            <button
+              className="menu-toggle d-md-none"
+              aria-label="Toggle menu"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </button>
+          </div>
         </div>
+      </header>
+
+      {/* Mobile Drawer + Overlay phải nằm ngoài <header> */}
+      <div className={`mobile-panel ${menuOpen ? "show" : ""}`}>
+        <ul className="panel-nav-list">
+          <li>
+            <Link to="/" className="nav-link" onClick={closeMenu}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/plants" className="nav-link" onClick={closeMenu}>
+              Plants
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact" className="nav-link" onClick={closeMenu}>
+              Contact
+            </Link>
+          </li>
+        </ul>
       </div>
-    </header>
+
+      {menuOpen && <div className="drawer-overlay" onClick={closeMenu}></div>}
+    </>
   );
 };
 
