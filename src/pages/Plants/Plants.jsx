@@ -49,7 +49,7 @@ const sortOptions = [
 ];
 
 const Plants = () => {
-  const [products, setProducts] = useState([]);
+  const [plants, setPlants] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedSubCategory, setSelectedSubCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
@@ -61,22 +61,22 @@ const Plants = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/products`)
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/plants`)
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data);
+        setPlants(data);
         setLoading(false);
       });
   }, []);
 
-  const categories = ["All", ...new Set(products.map((p) => p.category))];
+  const categories = ["All", ...new Set(plants.map((p) => p.category))];
   const subCategories = {};
   categories.forEach((cat) => {
     if (cat !== "All") {
       subCategories[cat] = [
         "All",
         ...new Set(
-          products.filter((p) => p.category === cat).map((p) => p.subcategory)
+          plants.filter((p) => p.category === cat).map((p) => p.subcategory)
         ),
       ];
     }
@@ -94,7 +94,7 @@ const Plants = () => {
     );
   };
 
-  let filteredProducts = products.filter((p) => {
+  let filteredplants = plants.filter((p) => {
     const matchCat =
       selectedCategory === "All" || p.category === selectedCategory;
     const matchSub =
@@ -104,23 +104,23 @@ const Plants = () => {
   });
 
   if (sortOption === "name-asc")
-    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+    filteredplants.sort((a, b) => a.name.localeCompare(b.name));
   else if (sortOption === "name-desc")
-    filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+    filteredplants.sort((a, b) => b.name.localeCompare(a.name));
   else if (sortOption === "price-asc")
-    filteredProducts.sort(
+    filteredplants.sort(
       (a, b) =>
         parseFloat(a.cost.replace("$", "")) -
         parseFloat(b.cost.replace("$", ""))
     );
   else if (sortOption === "price-desc")
-    filteredProducts.sort(
+    filteredplants.sort(
       (a, b) =>
         parseFloat(b.cost.replace("$", "")) -
         parseFloat(a.cost.replace("$", ""))
     );
   else if (sortOption === "pet-friendly")
-    filteredProducts = filteredProducts.filter((p) => p.petFriendly);
+    filteredplants = filteredplants.filter((p) => p.petFriendly);
 
   return (
     <div className="container-fluid plants-container">
@@ -143,7 +143,7 @@ const Plants = () => {
           <div className="filter-toggle-placeholder" />
         </div>
         <p className="text-muted mb-0">
-          Showing {filteredProducts.length} plant(s)
+          Showing {filteredplants.length} plant(s)
         </p>
       </div>
 
@@ -208,12 +208,12 @@ const Plants = () => {
                 <div className="spinner-border text-secondary" role="status" />
                 <p className="mt-3 text-muted">Loading...</p>
               </div>
-            ) : filteredProducts.length === 0 ? (
+            ) : filteredplants.length === 0 ? (
               <div className="text-center text-muted mt-4 w-100">
                 No plants found.
               </div>
             ) : (
-              filteredProducts.map((product) => (
+              filteredplants.map((product) => (
                 <div
                   key={product.id}
                   className="custom-col-5 mb-4 d-flex justify-content-center"
