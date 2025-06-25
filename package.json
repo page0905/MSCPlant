@@ -14,7 +14,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "server": "json-server --watch db.json --port 3002",
+    "server": "node server.js",
     "dev": "concurrently \"npm run server\" \"npm start\"",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
