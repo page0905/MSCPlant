@@ -14,9 +14,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "dev": "react-scripts start",
-    "eject": "react-scripts eject",
+    "server": "json-server --watch db.json --port 3002",
+    "dev": "concurrently \"npm run server\" \"npm start\"",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
@@ -31,5 +30,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
   }
 }

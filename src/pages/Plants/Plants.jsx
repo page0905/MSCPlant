@@ -61,7 +61,7 @@ const Plants = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:3001/products")
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/products`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
