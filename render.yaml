@@ -1,2 +1,12 @@
-build:
-  env: node
+services:
+  - type: web
+    name: mscplant
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    plan: free
+    branch: main
+    rootDir: .
+    buildFilter:
+      paths:
+        - "**/*"
