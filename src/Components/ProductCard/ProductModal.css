@@ -3,6 +3,18 @@
   padding: 12px;
 }
 
+.modal-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.modal-badges .badge {
+  font-size: 0.85rem;
+  padding: 0.5rem 0.75rem;
+}
+
 .modal-content .btn-success {
   background-color: var(--color-primary);
   border: none;
@@ -35,6 +47,12 @@
   color: var(--color-primary);
 }
 
+.modal-low-stock {
+  color: #d9534f;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
 @media (max-width: 768px) {
   .modal-dialog {
     max-width: 100%;
@@ -49,4 +67,22 @@
     transform: scale(0.8);
     transform-origin: center center;
   }
+}
+
+.modal-backdrop {
+  z-index: 10000 !important;
+}
+
+.modal {
+  z-index: 10001 !important;
+}
+
+.modal-dialog {
+  margin-top: 90px !important;
+  z-index: 10002 !important;
+}
+
+.modal-content {
+  border-radius: 12px;
+  overflow: hidden;
 }

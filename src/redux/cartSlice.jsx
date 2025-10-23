@@ -1,4 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { normalizePriceFields } from "../utils/price";
+
+const sanitizeCartPayload = (payload) => {
+  const normalized = normalizePriceFields(payload);
+  return {
+    name: normalized.name,
+    image: normalized.image,
+    cost: normalized.cost,
+    priceValue: normalized.priceValue,
+    stock: Number.isFinite(normalized.stock) ? normalized.stock : null,
+  };
+};
 
 export const CartSlice = createSlice({
   name: "cart",
@@ -8,12 +20,36 @@ export const CartSlice = createSlice({
 
   reducers: {
     addItem: (state, action) => {
-      const { name, image, cost } = action.payload;
-      const existingItem = state.items.find((item) => item.name === name);
+      const sanitized = sanitizeCartPayload(action.payload);
+      const existingItem = state.items.find(
+        (item) => item.name === sanitized.name
+      );
+
       if (existingItem) {
-        existingItem.quantity += 1;
+        const isStockLimited = Number.isFinite(existingItem.stock);
+        const canIncrement =
+          !isStockLimited || existingItem.quantity < existingItem.stock;
+
+        if (canIncrement) {
+          existingItem.quantity = 1;
+        }
+
+        if (Number.isFinite(sanitized.priceValue)) {
+          existingItem.priceValue = sanitized.priceValue;
+        }
+
+        if (Number.isFinite(sanitized.stock)) {
+          existingItem.stock = sanitized.stock;
+        }
       } else {
-        state.items.push({ name, image, cost, quantity: 1 });
+        if (Number.isFinite(sanitized.stock) && sanitized.stock <= 0) {
+          return;
+        }
+
+        state.items.push({
+          ...sanitized,
+          quantity: 1,
+        });
       }
     },
 
@@ -23,14 +59,31 @@ export const CartSlice = createSlice({
 
     updateQuantity: (state, action) => {
       const { name, quantity } = action.payload;
-      if (quantity <= 0) {
+
+      const numericQuantity = Math.floor(Number(quantity));
+
+      if (!Number.isFinite(numericQuantity) || numericQuantity <= 0) {
         state.items = state.items.filter((item) => item.name !== name);
-      } else {
-        const item = state.items.find((item) => item.name === name);
-        if (item) {
-          item.quantity = quantity;
-        }
+
+        return;
       }
+
+      const item = state.items.find((cartItem) => cartItem.name === name);
+      if (!item) {
+        return;
+      }
+
+      const isStockLimited = Number.isFinite(item.stock);
+      const nextQuantity = isStockLimited
+        ? Math.min(numericQuantity, item.stock)
+        : numericQuantity;
+
+      if (nextQuantity <= 0) {
+        state.items = state.items.filter((cartItem) => cartItem.name !== name);
+        return;
+      }
+
+      item.quantity = nextQuantity;
     },
   },
 });

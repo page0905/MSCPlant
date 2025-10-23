@@ -3,6 +3,70 @@
   padding: 120px 20px 20px;
 }
 
+.plants-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.plants-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.plants-status {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.clear-filters-btn {
+  background: transparent;
+  border: 1px solid rgba(16, 69, 52, 0.2);
+  color: var(--color-primary);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-weight: 600;
+  transition: background 0.2s ease, color 0.2s ease, border 0.2s ease;
+}
+
+.clear-filters-btn:hover:not(:disabled) {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  border-color: transparent;
+}
+
+.clear-filters-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.plants-active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.plants-filter-chip {
+  background-color: rgba(14, 102, 85, 0.12);
+  color: var(--color-primary);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.plants-highlight {
+  background-color: rgba(255, 235, 59, 0.5);
+  padding: 0 2px;
+  border-radius: 4px;
+}
+
 .plants-filter-wrapper .form-control {
   background-color: var(--color-background);
   border: 1px solid var(--color-primary);
@@ -31,51 +95,27 @@
   color: var(--color-primary);
   border: none;
   border-radius: 6px;
-  padding: 8px 16px;
-  font-size: 16px;
-  font-weight: 500;
+  padding: 8px 12px;
   cursor: pointer;
-  margin-bottom: 10px;
+  transition: background 0.2s ease;
 }
 
-.plants-filter-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.filter-toggle-btn:hover {
+  background-color: var(--color-primary);
+  color: var(--color-background);
 }
 
 .plants-content {
   flex: 1;
 }
 
-/* Product grid spacing */
-.plants-content .row {
-  margin: 0 -8px;
-}
 .plants-content .custom-col-5 {
-  padding: 0 8px;
+  width: 20%;
+  max-width: 20%;
 }
 
-/* Responsive */
-@media (min-width: 1500px) {
+@media (max-width: 991px) {
   .plants-content .custom-col-5 {
-    flex: 0 0 auto;
-    width: 20%;
-    max-width: 20%;
-  }
-}
-
-@media (min-width: 991px) and (max-width: 1499px) {
-  .plants-content .custom-col-5 {
-    flex: 0 0 auto;
-    width: 25%;
-    max-width: 25%;
-  }
-}
-
-@media (max-width: 990px) {
-  .plants-content .custom-col-5 {
-    flex: 0 0 auto;
     width: 33.333%;
     max-width: 33.333%;
   }
@@ -99,6 +139,15 @@
 
   .plants-filter-wrapper.active {
     display: flex;
+  }
+
+  .plants-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .plants-status {
+    width: 100%;
   }
 
   .filter-toggle-btn {
