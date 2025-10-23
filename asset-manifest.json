@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/MSCPlant/static/css/main.e830f564.css",
-    "main.js": "/MSCPlant/static/js/main.c6687543.js",
+    "main.css": "/MSCPlant/static/css/main.e6464ede.css",
+    "main.js": "/MSCPlant/static/js/main.b0d52e18.js",
     "index.html": "/MSCPlant/index.html",
-    "main.e830f564.css.map": "/MSCPlant/static/css/main.e830f564.css.map",
-    "main.c6687543.js.map": "/MSCPlant/static/js/main.c6687543.js.map"
+    "main.e6464ede.css.map": "/MSCPlant/static/css/main.e6464ede.css.map",
+    "main.b0d52e18.js.map": "/MSCPlant/static/js/main.b0d52e18.js.map"
   },
   "entrypoints": [
-    "static/css/main.e830f564.css",
-    "static/js/main.c6687543.js"
+    "static/css/main.e6464ede.css",
+    "static/js/main.b0d52e18.js"
   ]
 }
